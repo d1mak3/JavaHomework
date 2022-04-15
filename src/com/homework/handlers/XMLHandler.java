@@ -1,5 +1,6 @@
 package com.homework.handlers;
 
+import com.homework.Main;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -52,11 +53,11 @@ public class XMLHandler {
             e.printStackTrace();
         }
 
-        ConsoleHandler.writeLine("Введите название элемента:");
-        String tagName = ConsoleHandler.readLine();
+        System.out.println("Введите название элемента:");
+        String tagName = Main.readLine();
 
-        ConsoleHandler.writeLine("Введите строку для записи в элемент:");
-        String stringToSave = ConsoleHandler.readLine();
+        System.out.println("Введите строку для записи в элемент:");
+        String stringToSave = Main.readLine();
 
         Element root = (Element) Objects.requireNonNull(document).getElementsByTagName("data").item(0);
         Element newElement = Objects.requireNonNull(document).createElement(tagName);

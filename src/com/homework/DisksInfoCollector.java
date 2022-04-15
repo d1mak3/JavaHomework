@@ -1,7 +1,5 @@
 package com.homework;
 
-import com.homework.handlers.ConsoleHandler;
-
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.util.Arrays;
@@ -12,11 +10,11 @@ public class DisksInfoCollector {
     public static void displayDisksInfo() {
         FileSystemView fileSystemView = FileSystemView.getFileSystemView();
         Arrays.stream(File.listRoots()).forEach(file -> {
-            ConsoleHandler.writeLine("Название: " + file);
-            ConsoleHandler.writeLine("Тип: " + fileSystemView.getSystemTypeDescription(file));
-            ConsoleHandler.writeLine("Объём диска: " + file.getTotalSpace());
-            ConsoleHandler.writeLine("Свободное пространство: " + file.getFreeSpace());
-            ConsoleHandler.writeLine("Метка: " + fileSystemView.getSystemDisplayName(file) + '\n');
+            System.out.println("Тип: " + fileSystemView.getSystemTypeDescription(file));
+            System.out.println("Название: " + file);
+            System.out.println("Объём диска: " + file.getTotalSpace());
+            System.out.println("Свободное пространство: " + file.getFreeSpace());
+            System.out.println("Метка: " + fileSystemView.getSystemDisplayName(file) + '\n');
         });
     }
 
@@ -25,16 +23,16 @@ public class DisksInfoCollector {
         File dir = new File(dirName);
 
         if (dir.exists()){
-            ConsoleHandler.writeLine("Подкаталоги:");
+            System.out.println("Подкаталоги:");
             Stream.of(Objects.requireNonNull(dir.listFiles())).forEach(file -> {
                 if (file.isDirectory()){
-                    ConsoleHandler.writeLine(file.getName());
+                    System.out.println(file.getName());
                 }
             });
-            ConsoleHandler.writeLine("Файлы:");
+            System.out.println("Файлы:");
             Stream.of(Objects.requireNonNull(dir.listFiles())).forEach(file -> {
                 if (file.isFile()){
-                    ConsoleHandler.writeLine(file.getName());
+                    System.out.println(file.getName());
                 }
             });
         }

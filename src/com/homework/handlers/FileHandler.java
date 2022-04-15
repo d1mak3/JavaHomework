@@ -1,5 +1,7 @@
 package com.homework.handlers;
 
+import com.homework.Main;
+
 import java.io.*;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -45,13 +47,13 @@ public class FileHandler {
             e.getStackTrace();
         }
 
-        ConsoleHandler.writeLine("Введите строку для записи в файл:");
-        String text = ConsoleHandler.readLine();
+        System.out.println("Введите строку для записи в файл:");
+        String text = Main.readLine();
 
         try {
             byte[] buffer = text.getBytes();
             Objects.requireNonNull(fstream).write(buffer, 0, buffer.length);
-            ConsoleHandler.writeLine("Текст записан в файл");
+            System.out.println("Текст записан в файл");
         }
         catch (Exception e) {
             e.getStackTrace();
@@ -103,8 +105,8 @@ public class FileHandler {
     }
 
     public static void writeInFile(String path) {
-        ConsoleHandler.writeLine("Введите строку для записи в файл:");
-        String text = ConsoleHandler.readLine();
+        System.out.println("Введите строку для записи в файл:");
+        String text = Main.readLine();
 
         try (FileWriter writer = new FileWriter(path + "hta.txt", false)) {
             writer.write(text + '\n');
@@ -116,7 +118,7 @@ public class FileHandler {
         try (FileWriter writer = new FileWriter(path + "hta.txt", true)) {
             writer.write("Дозапись:\n");
             writer.write("4.5");
-            ConsoleHandler.writeLine("Запись выполнена");
+            System.out.println("Запись выполнена");
         }
         catch (IOException e) {
             e.getStackTrace();

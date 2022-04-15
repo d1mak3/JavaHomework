@@ -6,46 +6,62 @@ import com.homework.models.Person;
 import java.io.*;
 
 public class Main {
+    public static String readLine() {
+        StringBuilder finalString = new StringBuilder();
+        int byteFromInputStream;
+
+        try {
+            while ((byteFromInputStream = System.in.read()) != 10) {
+                finalString.append((char) byteFromInputStream);
+            }
+        }
+        catch (IOException e) {
+            e.getStackTrace();
+        }
+
+        return finalString.toString();
+    }
+
     public static void main(String[] args) {
         final String path = "C:\\SomeDir\\";
 
         // First task
-        ConsoleHandler.writeLine("Задание №1:");
+        System.out.println("Задание №1:");
         DisksInfoCollector.displayDisksInfo();
         DisksInfoCollector.displayFilesAndSubDirs();
 
         // Second task
-        ConsoleHandler.writeLine("\nЗадание №2:");
+        System.out.println("\nЗадание №2:");
         FileHandler.createDir(path); // Create directory to save files in
         FileHandler.writeInFileStream(path);
         try {
-            ConsoleHandler.writeLine(FileHandler.readFromFileStream(path));
+            System.out.println(FileHandler.readFromFileStream(path));
         }
         catch (IOException e) {
             e.printStackTrace();
         }
         FileHandler.writeInFile(path);
-        ConsoleHandler.writeLine(FileHandler.readFromFile(path + "hta.txt"));
+        System.out.println(FileHandler.readFromFile(path + "hta.txt"));
 
         // Third task
-        ConsoleHandler.writeLine("\nЗадание №3:");
+        System.out.println("\nЗадание №3:");
         Person newPerson = new Person("Dima", 2002);
         JsonHandler.writeJsonInFile(path, newPerson);
-        ConsoleHandler.writeLine(JsonHandler.readPersonFromJsonFile(path));
+        System.out.println(JsonHandler.readPersonFromJsonFile(path));
 
         // Fourth task
-        ConsoleHandler.writeLine("\nЗадание №4:");
+        System.out.println("\nЗадание №4:");
         XMLHandler.addNewXMLElementInFile();
-        ConsoleHandler.writeLine(XMLHandler.getXMLFromFile());
+        System.out.println(XMLHandler.getXMLFromFile());
 
         // Fifth task
-        ConsoleHandler.writeLine("\nЗадание №5:");
+        System.out.println("\nЗадание №5:");
         ZipHandler.zipFile(new File(path + "hta.txt"));
         File unzippedFile = ZipHandler.unzipFile("hta.txt");
-        ConsoleHandler.writeLine("Данные из разархивированного файла:");
-        ConsoleHandler.writeLine(FileHandler.readFromFile(path + "newhta.txt"));
+        System.out.println("Данные из разархивированного файла:");
+        System.out.println(FileHandler.readFromFile(path + "newhta.txt"));
 
-        ConsoleHandler.readLine();
+        readLine();
         FileHandler.deleteFiles(path);
         FileHandler.deleteDir(path);
     }

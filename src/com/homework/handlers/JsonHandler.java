@@ -14,7 +14,7 @@ public class JsonHandler {
 
         try (FileWriter writer = new FileWriter(path + "person.json", false)) {
             writer.write(jsonConverter.toJson(person));
-            ConsoleHandler.writeLine("json строка успешно записана в файл");
+            System.out.println("json строка успешно записана в файл");
         }
         catch (IOException e) {
             e.getStackTrace();
@@ -37,7 +37,7 @@ public class JsonHandler {
         }
 
         Person personFromJson = jsonConverter.fromJson(jsonFromFile.toString(), Person.class);
-        ConsoleHandler.writeLine("Конвертированные данные класса:\n" + personFromJson);
+        System.out.println("Конвертированные данные класса:\n" + personFromJson);
         return jsonFromFile.toString();
     }
 }

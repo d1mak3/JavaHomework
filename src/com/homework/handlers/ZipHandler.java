@@ -23,7 +23,7 @@ public class ZipHandler {
 
     public static File unzipFile(String fileName) {
         try (ZipInputStream zipStream = new ZipInputStream(new FileInputStream("C:\\SomeDir\\output.zip"))) {
-            ZipEntry newEntry = new ZipEntry(fileName);
+            ZipEntry newEntry;
 
             while ((newEntry = zipStream.getNextEntry()) != null) {
                 if (newEntry.getName().equals(fileName)) {
